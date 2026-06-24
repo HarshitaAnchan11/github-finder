@@ -91,3 +91,13 @@ function displayRepos(repos) {
     reposSection.classList.remove('hidden');
 }
 
+function hideAll(){
+    profileCard.classList.add('hidden');
+    reposSection.classList.add('hidden');
+    errorMsg.classList.add('hidden');
+}
+
+function showError(){
+    errorMsg.classList.remove('hidden');
+}
+
