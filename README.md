@@ -4,6 +4,7 @@ A responsive web app that lets you search any GitHub user and view their
 profile details and top repositories in real time.
 
 🔗 **Live Demo**: https://harshitaanchan11.github.io/github-finder/
+if doesn't work on a browser try a different browser. mine worked on microsoft edge but wasnt working on google chrome
 
 ## Features
 - Search any GitHub username
