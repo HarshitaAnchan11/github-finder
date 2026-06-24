@@ -15,6 +15,7 @@ searchInput.addEventListener('keypress', (e) => {
 //main function
 async function handleSearch(){
     const username = searchInput.value.trim();
+    console.log('Searching for:', username);
     if(!username) return;
 
     hideAll();
@@ -29,6 +30,7 @@ async function handleSearch(){
         displayRepos(reposData);
 
     } catch(error) {
+        console.log(error);
         showError();
     } finally {
         searchBtn.textContent = '🔍︎';
@@ -38,8 +40,8 @@ async function handleSearch(){
 
 async function fetchUser(username) {
   const response = await fetch(`https://api.github.com/users/${username}`);
-  console.log('Status:', response.status);      // ADD THIS
-  console.log('OK?:', response.ok);             // ADD THIS
+  console.log('Status:', response.status);      
+  console.log('OK?:', response.ok);             
   if (!response.ok) throw new Error('User not found');
   return response.json();
 }
@@ -47,7 +49,7 @@ async function fetchUser(username) {
 async function fetchRepos(username){
     const response = await fetch(`https://api.github.com/users/${username}/repos?sort=stars&per_page=6`);
     if(!response.ok) throw new Error('Could not fetch repos');
-    console.log(response.json());
+    
 
     return response.json();
 }
