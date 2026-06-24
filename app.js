@@ -52,3 +52,42 @@ async function fetchRepos(username){
     return response.json();
 }
 
+function displayProfile(user){
+    document.getElementById('avatar').src = user.avatar_url;
+    document.getElementById('name').textContent = user.name || user.login;
+    document.getElementById('username').textContent = `@${user.login}`;
+    document.getElementById('bio').textContent = user.bio || 'No bio available';
+    document.getElementById('repos').textContent = `Repos: ${user.public_repos}`;
+    document.getElementById('followers').textContent = `👥 Followers: ${user.followers}`;
+    document.getElementById('following').textContent = `➕ Following: ${user.following}`;
+    document.getElementById('profileLink').href = user.html_url;
+
+    profileCard.classList.remove('hidden');
+}
+
+function displayRepos(repos) {
+    const reposList = document.getElementById('reposList');
+    reposList.innerHTML = '';
+
+    if(repos.length == 0){
+        reposList.innerHTML = '<p> NO public repositories found.</p>';
+    } else {
+        repos.forEach(repo => {
+            const repoCard = document.createElement('div');
+            repoCard.classList.add('repo-card');
+            repoCard.innerHTML =`
+            <a href = "${repo.html_url}" target ="_blank">${repo.name}</a>
+            <p>${repo.description || 'No description'}</p>
+            <div class="repo-meta">
+                <span>⭐ ${repo.stargazers_count}</span>
+                <span>🍴 ${repo.forks_count}</span>
+                <span>💻 ${repo.language || 'N/A'}</span>
+            </div>
+            `;
+            reposList.appendChild(repoCard);
+        
+        });
+    }
+    reposSection.classList.remove('hidden');
+}
+
